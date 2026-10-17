@@ -1,0 +1,38 @@
+# --- EFEKTLER ---
+# Ekran görüntüsünü alıp bulanıklaştırır
+screenshots
+effect-blur=7x5
+effect-vignette=0.5:0.5
+
+# --- GENEL GÖRÜNÜM ---
+clock
+datestr=%d %B %Y
+timestr=%H:%M
+font=JetBrainsMono Nerd Font
+indicator-radius=100
+indicator-thickness=4
+
+# --- RENKLER (Minimal Siyah/Gri) ---
+# Arka plan rengi (Yarı şeffaf)
+color=14141480
+
+# Halka ve iç kısım
+ring-color=2b2b2bff
+inside-color=141414ff
+key-hl-color=d8d8d8ff
+line-color=00000000
+separator-color=00000000
+
+# Metin renkleri
+text-color=d8d8d8ff
+text-caps-lock-color=e5c07bff
+
+# Doğrulama yaparken (Şifre girildikten sonra Mavi)
+ring-ver-color=89b4faff
+inside-ver-color=141414ff
+text-ver-color=89b4faff
+
+# Hatalı şifre (Kırmızı)
+ring-wrong-color=e06c75ff
+inside-wrong-color=141414ff
+text-wrong-color=e06c75ff
