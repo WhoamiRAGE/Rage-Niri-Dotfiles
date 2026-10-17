@@ -1,0 +1,66 @@
+* {
+    font-family: "JetBrainsMono Nerd Font", "FiraCode Nerd Font", "monospace"; 
+    font-size: 13px;
+    font-weight: bold;
+    min-height: 0;
+    margin: 0;
+    padding: 0;
+}
+
+window#waybar {
+    background-color: transparent;
+    color: #d8d8d8;
+}
+
+/* #backlight eklendi, böylece o da diğerleriyle aynı arka planı alacak */
+#workspaces, #cpu, #memory, #temperature, #clock, #tray, #backlight, #pulseaudio, #battery, #custom-power {
+    background-color: rgba(20, 20, 20, 0.45);
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    border-radius: 6px;
+    padding: 4px 14px;
+}
+
+.modules-left > widget > * {
+    margin-right: 8px;
+}
+.modules-right > widget > * {
+    margin-left: 8px;
+}
+
+#workspaces button {
+    color: #666666;
+    background: transparent;
+    border: none;
+    box-shadow: none;
+    padding: 0 4px;
+    transition: all 0.2s ease;
+}
+
+#workspaces button.active {
+    color: #d8d8d8;
+}
+
+#workspaces button:hover {
+    color: #ffffff;
+    background: transparent;
+    box-shadow: none;
+}
+
+#battery.warning {
+    color: #e5c07b;
+    border-color: rgba(229, 192, 123, 0.3);
+}
+
+#battery.critical {
+    color: #e06c75;
+    border-color: rgba(224, 108, 117, 0.3);
+}
+
+#custom-power {
+    padding-left: 16px;
+    padding-right: 16px;
+}
+
+#custom-power:hover {
+    color: #e06c75;
+}

@@ -1,0 +1,77 @@
+{
+    "layer": "top",
+    "position": "top",
+    "margin-top": 14,
+    "margin-left": 14,
+    "margin-right": 14,
+    "height": 36,
+    "spacing": 8,
+    "modules-left": ["niri/workspaces", "cpu", "memory", "temperature"],
+    "modules-center": ["clock"],
+    "modules-right": ["tray", "backlight", "pulseaudio", "battery", "custom/power"],
+    
+    "niri/workspaces": {
+        "format": "{icon}",
+        "format-icons": {
+            "active": "●",
+            "default": "○"
+        }
+    },
+    
+    "cpu": {
+        "format": "  {usage}%",
+        "tooltip": false
+    },
+    
+    "memory": {
+        "format": "  {}%",
+        "tooltip": false
+    },
+    
+    "temperature": {
+        "critical-threshold": 80,
+        "format": " {temperatureC}°C",
+        "format-critical": " {temperatureC}°C",
+        "tooltip": false
+    },
+    
+    "clock": {
+        "format": "{:%H:%M  |  %d %b}",
+        "tooltip-format": "<tt><small>{calendar}</small></tt>"
+    },
+    
+    "backlight": {
+        "format": "{icon}  {percent}%",
+        "format-icons": ["󰃞", "󰃟", "󰃠"],
+        "tooltip": false
+    },
+    
+    "pulseaudio": {
+        "format": "{icon}  {volume}%",
+        "format-muted": "󰖁  Muted",
+        "format-icons": {
+            "default": ["󰕿", "󰖀", "󰕾"]
+        }
+    },
+    
+    "battery": {
+        "states": {
+            "warning": 30,
+            "critical": 15
+        },
+        "format": "{icon}  {capacity}%",
+        "format-charging": "󰂄  {capacity}%",
+        "format-plugged": "󰂄  {capacity}%",
+        "format-icons": ["󰂎", "󰁺", "󰁻", "󰁼", "󰁽", "󰁾", "󰁿", "󰂀", "󰂁", "󰂂", "󰁹"]
+    },
+    
+    "tray": {
+        "spacing": 10
+    },
+
+    "custom/power": {
+        "format": "⏻",
+        "on-click": "~/.config/waybar/power-menu.sh",
+        "tooltip": false
+    }
+}

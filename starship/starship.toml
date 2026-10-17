@@ -1,0 +1,27 @@
+add_newline = true
+
+# Orijinal akıcı blok yapısı: Dark Cherry (logo + kullanıcı) -> Koyu Gri (klasör) -> Ok
+format = "[](#5a1827)$os$username[](bg:#2b2b2b fg:#5a1827)$directory[ ](fg:#2b2b2b)$character"
+
+[os]
+disabled = false
+style = "bg:#5a1827 fg:#ffffff bold"
+format = "[$symbol]($style)"
+
+[os.symbols]
+Arch = " "
+
+[username]
+show_always = true
+style_user = "bg:#5a1827 fg:#ffffff bold"
+format = "[$user ]($style_user)"
+
+[directory]
+format = "[  $path ]($style)"
+style = "bg:#2b2b2b fg:#d8d8d8 bold"
+truncation_length = 3
+truncate_to_repo = false
+
+[character]
+success_symbol = "[❯](bold #a6e3a1)"
+error_symbol = "[❯](bold #e06c75)"

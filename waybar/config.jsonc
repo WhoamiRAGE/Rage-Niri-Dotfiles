@@ -1,0 +1,81 @@
+{
+    "layer": "top",
+    "position": "top",
+    "height": 34,
+    "margin-top": 6,
+    "margin-left": 10,
+    "margin-right": 10,
+    "spacing": 4,
+
+    "modules-left": [
+        "tray",
+        "cpu",
+        "custom/gpu"
+    ],
+    "modules-center": [
+        "clock"
+    ],
+    "modules-right": [
+        "network",
+        "backlight",
+        "pulseaudio",
+        "battery",
+        "custom/power"
+    ],
+
+    "tray": {
+        "icon-size": 16,
+        "spacing": 12
+    },
+
+    "clock": {
+        "format": "{:%H:%M}"
+    },
+
+    "cpu": {
+        "format": "\uf2db {usage}%",
+        "interval": 2
+    },
+
+    "custom/gpu": {
+        "exec": "printf '\\uf2db %s%%\\n' \"$(nvidia-smi --query-gpu=utilization.gpu --format=csv,noheader,nounits)\"",
+        "interval": 2,
+        "tooltip": false
+    },
+
+    "network": {
+        "format-wifi": "\uf1eb {signalStrength}%",
+        "format-ethernet": "\uf796 Wired",
+        "format-disconnected": "\uf6ab",
+        "tooltip-format": "{essid}"
+    },
+
+    "battery": {
+        "format": "{icon} {capacity}%",
+        "format-icons": ["\uf244", "\uf243", "\uf242", "\uf241", "\uf240"],
+        "format-charging": "\uf1e6 {capacity}%",
+        "states": {
+            "warning": 30,
+            "critical": 15
+        }
+    },
+
+    "pulseaudio": {
+        "format": "{icon} {volume}%",
+        "format-muted": "\uf026 Sessiz",
+        "format-icons": ["\uf026", "\uf027", "\uf028"],
+        "on-click": "pavucontrol"
+    },
+
+    "custom/power": {
+        "format": "\uf011",
+        "on-click": "wlogout",
+        "tooltip": false
+    },
+
+    "backlight": {
+        "format": "\uf185 {percent}%",
+        "on-scroll-up": "brightnessctl set +5%",
+        "on-scroll-down": "brightnessctl set 5%-"
+    }
+}

@@ -1,0 +1,11 @@
+background-opacity = 0.70
+theme = Abernathy
+background = #000000
+foreground = #e0e0e0
+background-blur-radius = 0
+selection-background = #333333
+selection-foreground = #ffffff
+cursor-color = #ffffff
+cursor-text = #000000
+window-decoration = false
+font-family = "JetBrainsMono Nerd Font"

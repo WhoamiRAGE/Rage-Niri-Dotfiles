@@ -1,0 +1,285 @@
+spawn-at-startup "xwayland-satellite" "waypaper" "--restore"
+
+environment {
+    QT_QPA_PLATFORMTHEME "qt6ct"
+    GTK_THEME "Adwaita:dark"
+}
+
+input {
+    keyboard {
+        xkb {}
+        numlock
+    }
+    touchpad {
+        tap
+        natural-scroll
+    }
+    mouse {}
+    trackpoint {}
+}
+
+/-output "eDP-1" {
+    mode "1920x1080@120.030"
+    scale 2
+    transform "normal"
+    position x=1280 y=0
+}
+
+layout {
+    gaps 14
+    center-focused-column "never"
+
+    preset-column-widths {
+        proportion 0.33333
+        proportion 0.5
+        proportion 0.66667
+    }
+
+    default-column-width { proportion 0.5; }
+
+    focus-ring {
+        off
+    }
+
+    border {
+        on
+        width 2
+        active-color "#d8d8d8"
+        inactive-color "#2b2b2b"
+    }
+
+    shadow {
+        off
+    }
+
+    struts {}
+}
+
+spawn-at-startup "waybar"
+spawn-at-startup "swaybg" "-i" "/home/rage/Wallpaper/wallhaven-3zd8dd.jpg" "-m" "fill"
+
+hotkey-overlay {}
+
+prefer-no-csd
+screenshot-path "~/Pictures/Screenshots/Screenshot from %Y-%m-%d %H-%M-%S.png"
+
+
+window-rule {
+    match app-id=r#"^org\.wezfurlong\.wezterm$"#
+    default-column-width {}
+}
+
+window-rule {
+    match app-id=r#"firefox$"# title="^Picture-in-Picture$"
+    open-floating true
+}
+
+binds {
+    Super+Shift+Slash { show-hotkey-overlay; }
+    Super+D { spawn "fuzzel"; }
+    Super+S { spawn-sh "killall -SIGUSR1 waybar"; }
+    Super+Space { spawn "waypaper"; }
+    Super+Return { spawn "ghostty"; }
+    Super+W { spawn "firefox"; }
+    Super+Alt+L { spawn "swaylock"; }
+    Super+Alt+S allow-when-locked=true { spawn-sh "pkill orca || exec orca"; }
+
+    XF86AudioRaiseVolume allow-when-locked=true { spawn-sh "wpctl set-volume @DEFAULT_AUDIO_SINK@ 0.1+ -l 1.0"; }
+    XF86AudioLowerVolume allow-when-locked=true { spawn-sh "wpctl set-volume @DEFAULT_AUDIO_SINK@ 0.1-"; }
+    XF86AudioMute        allow-when-locked=true { spawn-sh "wpctl set-mute @DEFAULT_AUDIO_SINK@ toggle"; }
+    XF86AudioMicMute     allow-when-locked=true { spawn-sh "wpctl set-mute @DEFAULT_AUDIO_SOURCE@ toggle"; }
+    XF86AudioPlay        allow-when-locked=true { spawn-sh "playerctl play-pause"; }
+    XF86AudioStop        allow-when-locked=true { spawn-sh "playerctl stop"; }
+    XF86AudioPrev        allow-when-locked=true { spawn-sh "playerctl previous"; }
+    XF86AudioNext        allow-when-locked=true { spawn-sh "playerctl next"; }
+    XF86MonBrightnessUp allow-when-locked=true { spawn "brightnessctl" "--class=backlight" "set" "+10%"; }
+    XF86MonBrightnessDown allow-when-locked=true { spawn "brightnessctl" "--class=backlight" "set" "10%-"; }
+
+    Super+O repeat=false { toggle-overview; }
+    Super+Q repeat=false { close-window; }
+
+    Super+Left  { focus-column-left; }
+    Super+Down  { focus-window-down; }
+    Super+Up    { focus-window-up; }
+    Super+Right { focus-column-right; }
+    Super+H     { focus-column-left; }
+    Super+J     { focus-window-down; }
+    Super+K     { focus-window-up; }
+    Super+L     { focus-column-right; }
+
+    Super+Ctrl+Left  { move-column-left; }
+    Super+Ctrl+Down  { move-window-down; }
+    Super+Ctrl+Up    { move-window-up; }
+    Super+Ctrl+Right { move-column-right; }
+    Super+Ctrl+H     { move-column-left; }
+    Super+Ctrl+J     { move-window-down; }
+    Super+Ctrl+K     { move-window-up; }
+    Super+Ctrl+L     { move-column-right; }
+
+    Super+Home { focus-column-first; }
+    Super+End  { focus-column-last; }
+    Super+Ctrl+Home { move-column-to-first; }
+    Super+Ctrl+End  { move-column-to-last; }
+
+    Super+Shift+Left  { focus-monitor-left; }
+    Super+Shift+Down  { focus-monitor-down; }
+    Super+Shift+Up    { focus-monitor-up; }
+    Super+Shift+Right { focus-monitor-right; }
+    Super+Shift+H     { focus-monitor-left; }
+    Super+Shift+J     { focus-monitor-down; }
+    Super+Shift+K     { focus-monitor-up; }
+    Super+Shift+L     { focus-monitor-right; }
+
+    Super+Shift+Ctrl+Left  { move-column-to-monitor-left; }
+    Super+Shift+Ctrl+Down  { move-column-to-monitor-down; }
+    Super+Shift+Ctrl+Up    { move-column-to-monitor-up; }
+    Super+Shift+Ctrl+Right { move-column-to-monitor-right; }
+    Super+Shift+Ctrl+H     { move-column-to-monitor-left; }
+    Super+Shift+Ctrl+J     { move-column-to-monitor-down; }
+    Super+Shift+Ctrl+K     { move-column-to-monitor-up; }
+    Super+Shift+Ctrl+L     { move-column-to-monitor-right; }
+
+    Super+Page_Down      { focus-workspace-down; }
+    Super+Page_Up        { focus-workspace-up; }
+    Super+U              { focus-workspace-down; }
+    Super+I              { focus-workspace-up; }
+    Super+Ctrl+Page_Down { move-column-to-workspace-down; }
+    Super+Ctrl+Page_Up   { move-column-to-workspace-up; }
+    Super+Ctrl+U         { move-column-to-workspace-down; }
+    Super+Ctrl+I         { move-column-to-workspace-up; }
+
+    Super+Shift+Page_Down { move-workspace-down; }
+    Super+Shift+Page_Up   { move-workspace-up; }
+    Super+Shift+U         { move-workspace-down; }
+    Super+Shift+I         { move-workspace-up; }
+
+    Super+WheelScrollDown      cooldown-ms=150 { focus-workspace-down; }
+    Super+WheelScrollUp        cooldown-ms=150 { focus-workspace-up; }
+    Super+Ctrl+WheelScrollDown cooldown-ms=150 { move-column-to-workspace-down; }
+    Super+Ctrl+WheelScrollUp   cooldown-ms=150 { move-column-to-workspace-up; }
+    Super+WheelScrollRight      { focus-column-right; }
+    Super+WheelScrollLeft       { focus-column-left; }
+    Super+Ctrl+WheelScrollRight { move-column-right; }
+    Super+Ctrl+WheelScrollLeft  { move-column-left; }
+    Super+Shift+WheelScrollDown      { focus-column-right; }
+    Super+Shift+WheelScrollUp        { focus-column-left; }
+    Super+Ctrl+Shift+WheelScrollDown { move-column-right; }
+    Super+Ctrl+Shift+WheelScrollUp   { move-column-left; }
+
+    Super+1 { focus-workspace 1; }
+    Super+2 { focus-workspace 2; }
+    Super+3 { focus-workspace 3; }
+    Super+4 { focus-workspace 4; }
+    Super+5 { focus-workspace 5; }
+    Super+6 { focus-workspace 6; }
+    Super+7 { focus-workspace 7; }
+    Super+8 { focus-workspace 8; }
+    Super+9 { focus-workspace 9; }
+    Super+Ctrl+1 { move-column-to-workspace 1; }
+    Super+Ctrl+2 { move-column-to-workspace 2; }
+    Super+Ctrl+3 { move-column-to-workspace 3; }
+    Super+Ctrl+4 { move-column-to-workspace 4; }
+    Super+Ctrl+5 { move-column-to-workspace 5; }
+    Super+Ctrl+6 { move-column-to-workspace 6; }
+    Super+Ctrl+7 { move-column-to-workspace 7; }
+    Super+Ctrl+8 { move-column-to-workspace 8; }
+    Super+Ctrl+9 { move-column-to-workspace 9; }
+
+    Super+BracketLeft  { consume-or-expel-window-left; }
+    Super+BracketRight { consume-or-expel-window-right; }
+    Super+Comma  { consume-window-into-column; }
+    Super+Period { expel-window-from-column; }
+
+    Super+R { switch-preset-column-width; }
+    Super+Shift+R { switch-preset-column-width-back; }
+    Super+Ctrl+Shift+R { switch-preset-window-height; }
+    Super+Ctrl+R { reset-window-height; }
+
+    Super+F { maximize-column; }
+    Super+Shift+F { fullscreen-window; }
+    Super+M { maximize-window-to-edges; }
+    Super+Ctrl+F { expand-column-to-available-width; }
+    Super+C { center-column; }
+    Super+Ctrl+C { center-visible-columns; }
+
+    Super+Minus { set-column-width "-10%"; }
+    Super+Equal { set-column-width "+10%"; }
+    Super+Shift+Minus { set-window-height "-10%"; }
+    Super+Shift+Equal { set-window-height "+10%"; }
+
+    Super+V       { toggle-window-floating; }
+    Super+Shift+V { switch-focus-between-floating-and-tiling; }
+    Super+Shift+W { toggle-column-tabbed-display; }
+
+    Super+Shift+S { screenshot; }
+    Ctrl+Print { screenshot-screen; }
+    Alt+Print { screenshot-window; }
+
+    Super+Escape allow-inhibiting=false { toggle-keyboard-shortcuts-inhibit; }
+    Super+Shift+E { quit; }
+    Ctrl+Alt+Delete { quit; }
+    Super+Shift+P { power-off-monitors; }
+}
+
+layer-rule {
+    match namespace="waybar"
+    background-effect {
+        blur false
+    }
+}
+
+layer-rule {
+    match namespace="fuzzel"
+    background-effect {
+        blur false
+    }
+}
+
+window-rule {
+    geometry-corner-radius 6
+    clip-to-geometry true
+    background-effect {
+        blur false
+    }
+}
+
+window-rule {
+    match app-id=r#"^com\.mitchellh\.ghostty$"#
+    draw-border-with-background false
+}
+
+
+animations {
+    // Genel animasyon hızı (1.0 normal hızdır, 0.7 daha yavaş ve sinematik/akıcı yapar)
+    slowdown 0.8
+
+    // Pencere açılış ve kapanışları (Fade + Küçülerek kaybolma efekti)
+    window-open {
+        duration-ms 250
+        curve "ease-out-cubic"
+    }
+
+    window-close {
+        duration-ms 200
+        curve "ease-out-quad"
+    }
+
+    // Pencerelerin yer değiştirme ve kaydırma hareketleri (Yay efekti gibi yumuşak)
+    horizontal-view-movement {
+        spring damping-ratio=1.0 stiffness=800 epsilon=0.0001
+    }
+
+    window-movement {
+        spring damping-ratio=1.0 stiffness=800 epsilon=0.0001
+    }
+
+    // Çalışma alanı (Workspace) geçişleri
+    workspace-switch {
+        spring damping-ratio=1.0 stiffness=700 epsilon=0.0001
+    }
+
+    // Pencere boyutlandırma animasyonları
+    window-resize {
+        spring damping-ratio=1.0 stiffness=900 epsilon=0.0001
+    }
+}
